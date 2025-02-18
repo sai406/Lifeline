@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Lifeline</string>
+    <string name="title_activity_dashboard">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="sign">Sign</string>
+    <string name="signed_message">Signed Message</string>
+    <string name="emergency_text">Press PANIC Button in Emergency</string>
+</resources>

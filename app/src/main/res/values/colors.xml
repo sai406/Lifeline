@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#0E3756</color>
+    <color name="colorPrimary">#0E3756</color>
+    <color name="purple_500">#0E3756</color>
+    <color name="purple_700">#0E3756</color>
+    <color name="teal_200">#7A1015</color>
+    <color name="teal_700">#7A1015</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="profilebg1">#024175</color>
+    <color name="chatlistbg">#AD042549</color>
+    <color name="profilebg2">#18A47A</color>
+    <color name="appred">#B4130D</color>
+
+</resources>

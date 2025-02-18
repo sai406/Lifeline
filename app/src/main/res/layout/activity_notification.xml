@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/swipeRefreshLayout"
+    >
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/llBottomNavigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:isScrollContainer="true"
+        android:nestedScrollingEnabled="true"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tvRequestPending"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Request Pending"
+                android:textSize="@dimen/_14sdp"
+                android:textColor="@color/purple_700"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                />
+
+            <TextView
+                android:id="@+id/tvEmptyRequestPending"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No Request Pending"
+                android:textSize="@dimen/_14sdp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/tvRequestPending"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:visibility="visible"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvRequestPending"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/tvRequestPending"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:visibility="gone"
+                />
+
+            <TextView
+                android:id="@+id/tvRequestSent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Request Sent"
+                android:textSize="@dimen/_14sdp"
+                android:textColor="@color/purple_200"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/rvRequestPending"
+                app:layout_constraintStart_toStartOf="@+id/tvRequestPending"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:layout_goneMarginTop="@dimen/_35sdp"
+                />
+
+            <TextView
+                android:id="@+id/tvEmptyRequestSent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No Request Sent"
+                android:textSize="@dimen/_14sdp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/tvRequestSent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:visibility="visible"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvRequestSent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/tvRequestSent"
+                app:layout_constraintStart_toStartOf="@+id/rvRequestPending"
+                app:layout_constraintEnd_toEndOf="@+id/rvRequestPending"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:visibility="gone"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/llBottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints">
+
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

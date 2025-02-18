@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/messageimageid"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentRight="true"
+            android:adjustViewBounds="true"
+            android:padding="10dp"
+            android:scaleType="fitCenter"
+            android:visibility="gone" />
+
+        <EditText
+            android:id="@+id/text_send"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/messageimageid"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toLeftOf="@+id/btn_galery"
+            android:background="@drawable/bg_round"
+            android:hint="Type a message..." />
+
+        <ImageButton
+            android:id="@+id/btn_galery"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/messageimageid"
+            android:layout_margin="10dp"
+            android:layout_toLeftOf="@+id/btn_send"
+            android:background="@drawable/ic_baseline_attachment_24" />
+
+        <ImageButton
+            android:id="@+id/btn_send"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/messageimageid"
+            android:layout_alignParentRight="true"
+            android:layout_margin="10dp"
+            android:background="@drawable/ic_baseline_send_24" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

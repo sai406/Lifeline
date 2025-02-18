@@ -1,0 +1,391 @@
+{
+  "project_info": {
+    "project_number": "537234315748",
+    "firebase_url": "https://artful-reactor-235904.firebaseio.com",
+    "project_id": "artful-reactor-235904",
+    "storage_bucket": "artful-reactor-235904.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:537234315748:android:0b965cfb47bebfdfcccff1",
+        "android_client_info": {
+          "package_name": "com.anil.halo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "537234315748-7p8iugu41doi00fp4afl4v2io8id6jpt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2wny-maK_25od1PUt0V3B5QSMOwh25tI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "537234315748-7p8iugu41doi00fp4afl4v2io8id6jpt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:537234315748:android:0f324a20d673f023cccff1",
+        "android_client_info": {
+          "package_name": "com.gmi.gtcm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "537234315748-2r9o8l5vg3dtjat3gc22388tnbdsjhij.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gmi.gtcm",
+            "certificate_hash": "7337751677192207cd22be0168b3973c4ac61190"
+          }
+        },
+        {
+          "client_id": "537234315748-7p8iugu41doi00fp4afl4v2io8id6jpt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2wny-maK_25od1PUt0V3B5QSMOwh25tI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "537234315748-7p8iugu41doi00fp4afl4v2io8id6jpt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:537234315748:android:553590c7df58da31cccff1",
+        "android_client_info": {
+          "package_name": "com.hmwssb.lifelinecoordinator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "537234315748-7p8iugu41doi00fp4afl4v2io8id6jpt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2wny-maK_25od1PUt0V3B5QSMOwh25tI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "537234315748-7p8iugu41doi00fp4afl4v2io8id6jpt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:537234315748:android:20ebc1ce89216586cccff1",
+        "android_client_info": {
+          "package_name": "com.mstec.eziid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "537234315748-7p8iugu41doi00fp4afl4v2io8id6jpt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2wny-maK_25od1PUt0V3B5QSMOwh25tI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "537234315748-7p8iugu41doi00fp4afl4v2io8id6jpt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:537234315748:android:6759da88923d4f64cccff1",
+        "android_client_info": {
+          "package_name": "com.mstech.beyondtravel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "537234315748-7p8iugu41doi00fp4afl4v2io8id6jpt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2wny-maK_25od1PUt0V3B5QSMOwh25tI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "537234315748-7p8iugu41doi00fp4afl4v2io8id6jpt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:537234315748:android:e8a21616f2a6c7c3cccff1",
+        "android_client_info": {
+          "package_name": "com.mstech.gamesnatcherz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "537234315748-7p8iugu41doi00fp4afl4v2io8id6jpt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2wny-maK_25od1PUt0V3B5QSMOwh25tI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "537234315748-7p8iugu41doi00fp4afl4v2io8id6jpt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:537234315748:android:9f31b30590cb0cfdcccff1",
+        "android_client_info": {
+          "package_name": "com.mstech.grainsrestaurant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "537234315748-7rqpdvb2m5ml4ppigqaooovpq0i95dml.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mstech.grainsrestaurant",
+            "certificate_hash": "9cbc30fae1e66d0b1cfb66b078f2a864d9baa4e3"
+          }
+        },
+        {
+          "client_id": "537234315748-7p8iugu41doi00fp4afl4v2io8id6jpt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2wny-maK_25od1PUt0V3B5QSMOwh25tI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "537234315748-7p8iugu41doi00fp4afl4v2io8id6jpt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:537234315748:android:1c51b480a09bf02bcccff1",
+        "android_client_info": {
+          "package_name": "com.mstech.lifeline"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "537234315748-7p8iugu41doi00fp4afl4v2io8id6jpt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2wny-maK_25od1PUt0V3B5QSMOwh25tI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "537234315748-7p8iugu41doi00fp4afl4v2io8id6jpt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:537234315748:android:9098274534a51f2ecccff1",
+        "android_client_info": {
+          "package_name": "com.mstech.marycare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "537234315748-0mf2r4iea6siccib6bsc3hmk5m2opbuf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mstech.marycare",
+            "certificate_hash": "9cbc30fae1e66d0b1cfb66b078f2a864d9baa4e3"
+          }
+        },
+        {
+          "client_id": "537234315748-7p8iugu41doi00fp4afl4v2io8id6jpt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2wny-maK_25od1PUt0V3B5QSMOwh25tI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "537234315748-7p8iugu41doi00fp4afl4v2io8id6jpt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:537234315748:android:12e6c04e21f7457acccff1",
+        "android_client_info": {
+          "package_name": "com.mstech.nakshatra"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "537234315748-7p8iugu41doi00fp4afl4v2io8id6jpt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2wny-maK_25od1PUt0V3B5QSMOwh25tI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "537234315748-7p8iugu41doi00fp4afl4v2io8id6jpt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:537234315748:android:87801250d1e8ae49cccff1",
+        "android_client_info": {
+          "package_name": "com.mstech.restaurantapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "537234315748-kchcm0r43as5ulmb9118esrlq9n5g22u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mstech.restaurantapp",
+            "certificate_hash": "9cbc30fae1e66d0b1cfb66b078f2a864d9baa4e3"
+          }
+        },
+        {
+          "client_id": "537234315748-7p8iugu41doi00fp4afl4v2io8id6jpt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2wny-maK_25od1PUt0V3B5QSMOwh25tI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "537234315748-7p8iugu41doi00fp4afl4v2io8id6jpt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:537234315748:android:6f11599a010f3908cccff1",
+        "android_client_info": {
+          "package_name": "com.mstech.rideio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "537234315748-7p8iugu41doi00fp4afl4v2io8id6jpt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2wny-maK_25od1PUt0V3B5QSMOwh25tI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "537234315748-7p8iugu41doi00fp4afl4v2io8id6jpt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

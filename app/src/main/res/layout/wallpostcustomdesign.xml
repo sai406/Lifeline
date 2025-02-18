@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="10dp"
+    android:layout_marginLeft="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="8dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_round"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:padding="10dp"
+            android:layout_height="wrap_content">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/postcusprofileimageid"
+                android:layout_width="45dp"
+                android:layout_height="45dp"/>
+
+            <TextView
+                android:id="@+id/postprofilenametvid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:textSize="18sp"
+                android:paddingLeft="20dp"
+                android:paddingRight="10dp"
+                android:layout_alignTop="@id/postcusprofileimageid"
+                android:layout_toRightOf="@id/postcusprofileimageid"
+
+                android:textColor="@color/black"
+                />
+            <TextView
+                android:id="@+id/posttimetvid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:textSize="12sp"
+                android:paddingLeft="20dp"
+                android:paddingRight="10dp"
+                android:layout_alignBottom="@id/postcusprofileimageid"
+                android:layout_toRightOf="@id/postcusprofileimageid"
+
+                android:textColor="@color/black"
+                />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginRight="10dp"
+            android:visibility="gone"
+            android:background="@color/quantum_grey"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical"
+            android:layout_marginTop="5dp"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/postedimagebycustomer"
+                android:layout_width="wrap_content"
+                android:scaleType="fitXY"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/postmessagetvid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:padding="10dp"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

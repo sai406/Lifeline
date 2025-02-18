@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/purple_200"
+    tools:context=".fragments.NotificationsFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/_15sdp"
+        android:layout_marginRight="@dimen/_15sdp"
+        android:layout_marginBottom="70dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/campaign"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="05dp"
+            android:backgroundTint="@color/white"
+            android:drawableLeft="@drawable/campaign"
+            android:drawableRight="@drawable/rightarrow"
+            android:drawableTint="@color/purple_200"
+            android:gravity="start|center"
+            android:text="Campaigns"
+            android:textAllCaps="false"
+            android:textColor="@color/purple_200"
+            app:cornerRadius="8dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/addsos"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="05dp"
+            android:backgroundTint="@color/white"
+            android:drawableLeft="@drawable/sos"
+            android:drawableRight="@drawable/rightarrow"
+            android:drawableTint="@color/purple_200"
+            android:gravity="start|center"
+            android:text="SOS Contacts"
+            android:textAllCaps="false"
+            android:textColor="@color/purple_200"
+            app:backgroundTint="@color/white"
+            app:cornerRadius="8dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/gallery"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="05dp"
+            android:backgroundTint="@color/white"
+            android:drawableLeft="@drawable/gallery"
+            android:drawableRight="@drawable/rightarrow"
+            android:drawableTint="@color/purple_200"
+            android:gravity="start|center"
+            android:text="Incident Videos"
+            android:textAllCaps="false"
+            android:textColor="@color/purple_200"
+            app:backgroundTint="@color/white"
+            app:cornerRadius="8dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/resources"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="05dp"
+            android:backgroundTint="@color/white"
+            android:drawableLeft="@drawable/resources"
+            android:drawableRight="@drawable/rightarrow"
+            android:drawableTint="@color/purple_200"
+            android:gravity="start|center"
+            android:text="Resources"
+            android:textAllCaps="false"
+            android:textColor="@color/purple_200"
+            app:backgroundTint="@color/white"
+            app:cornerRadius="8dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cordinaterlist"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="05dp"
+            android:backgroundTint="@color/white"
+            android:drawableLeft="@drawable/incident"
+            android:drawableRight="@drawable/rightarrow"
+            android:drawableTint="@color/purple_200"
+            android:gravity="start|center"
+            android:text="Incidents List"
+            android:textAllCaps="false"
+            android:textColor="@color/purple_200"
+            app:backgroundTint="@color/white"
+            app:cornerRadius="8dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/sos"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:backgroundTint="@color/white"
+            android:drawableLeft="@drawable/person"
+            android:drawableRight="@drawable/rightarrow"
+            android:drawableTint="@color/purple_200"
+            android:gravity="start|center"
+            android:text="Incident List"
+            android:textAllCaps="false"
+            android:textColor="@color/purple_200"
+            app:backgroundTint="@color/white"
+            app:cornerRadius="8dp" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/member_list"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:backgroundTint="@color/white"
+            android:drawableLeft="@drawable/ic_baseline_group_24"
+            android:drawableRight="@drawable/rightarrow"
+            android:drawableTint="@color/purple_200"
+            android:gravity="start|center"
+            android:text="Members List"
+            android:textAllCaps="false"
+            android:textColor="@color/purple_200"
+            app:backgroundTint="@color/white"
+            app:cornerRadius="8dp" />
+
+
+
+
+    </LinearLayout>
+
+
+</ScrollView>
