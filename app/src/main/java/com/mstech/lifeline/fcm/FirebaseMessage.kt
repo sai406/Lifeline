@@ -83,9 +83,9 @@ class FirebaseMessage : FirebaseMessagingService(){
 
             var body = ""
             var link = ""
-            if (message.notification!!.body!!.contains("~")) {
-                body = message.notification!!.body!!.split("~")[0]
-                link = message.notification!!.body!!.split("~")[1]
+            if (message.notification!!.body!!.contains("_")) {
+                body = message.notification!!.body!!.split("_")[0]
+                link = message.notification!!.body!!.split("_")[1]
             } else {
                 body = message.notification!!.body!!
             }
@@ -93,11 +93,11 @@ class FirebaseMessage : FirebaseMessagingService(){
                 message.notification?.title?:"",
                 body, link?:""
             )
-            generateNotification(
-                message.notification?.title?:"",
-                message.notification?.body?:"",
-                link?:""
-            )
+//            generateNotification(
+//                message.notification?.title?:"",
+//                message.notification?.body?:"",
+//                link?:""
+//            )
         }
     }
 

@@ -30,17 +30,17 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             // Since the notification is received directly from
             // FCM, the title and the body can be fetched
             // directly as below.
-            var body = ""
-            var link = ""
-            if (remoteMessage.notification!!.body!!.contains("~")) {
-                body = remoteMessage.notification!!.body!!.split("~")[0]
-                link = remoteMessage.notification!!.body!!.split("~")[1]
-            } else {
-                body = remoteMessage.notification!!.body!!
-            }
+//            var body = ""
+//            var link = ""
+//            if (remoteMessage.notification!!.body!!.contains("_")) {
+//                body = remoteMessage.notification!!.body!!.split("_")[0]
+//                link = remoteMessage.notification!!.body!!.split("_")[1]
+//            } else {
+//                body = remoteMessage.notification!!.body!!
+//            }
             showNotification(
                 remoteMessage.notification!!.title,
-                body, link
+                remoteMessage.notification!!.body, remoteMessage.notification!!.body.toString()
             )
         }
     }

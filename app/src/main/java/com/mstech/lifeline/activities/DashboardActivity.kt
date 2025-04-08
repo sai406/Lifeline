@@ -54,14 +54,14 @@ var i=0
             // The service is already running
             // You can take appropriate action here
         }
-        if (!isServiceRunning(VoiceService::class.java)) {
-            // Start the foreground service
-            val serviceIntent = Intent(this, VoiceService::class.java)
-            startService(serviceIntent)
-        } else {
-            // The service is already running
-            // You can take appropriate action here
-        }
+//        if (!isServiceRunning(VoiceService::class.java)) {
+//            // Start the foreground service
+//            val serviceIntent = Intent(this, VoiceService::class.java)
+//            startService(serviceIntent)
+//        } else {
+//            // The service is already running
+//            // You can take appropriate action here
+//        }
 
     }
     fun BottomNavigationView.setBadge(tabResId: Int, badgeValue: Int) {

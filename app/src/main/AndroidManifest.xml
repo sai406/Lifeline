@@ -230,11 +230,11 @@
             android:name=".activities.TrackingService"
             android:enabled="true"
             android:exported="true" />
-        <service
+      <!--  <service
             android:name=".activities.VoiceService"
             android:permission="android.permission.FOREGROUND_SERVICE"
             android:foregroundServiceType="mediaProjection"
-            android:exported="false" />
+            android:exported="false" />-->
 
         <activity
             android:name=".activities.MobileNumberActivity"
