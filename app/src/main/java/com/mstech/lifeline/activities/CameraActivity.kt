@@ -466,6 +466,7 @@ class CameraActivity : AppCompatActivity() {
         var obj = JSONObject()
         obj.put("MemberId", SPStaticUtils.getString(SharedKey.CUSTOMER_ID))
         obj.put("HelpId", helpId)
+        obj.put("VideoName", "")
         val jsonArray = JSONArray()
         jsonArray.put(basedata)
         obj.put("Videos", jsonArray)
