@@ -97,6 +97,9 @@ interface RetrofitApi {
     @POST("MemberRegisterMobileApp")
     suspend fun registerCoOrdinator(@Body postdata: RequestBody): Response<RegisterResponse>
 
+    @POST("AddMember")
+    suspend fun register(@Body postdata: RequestBody): Response<Register>
+
     @POST("AddMemberSOS")
     suspend fun addSOS(@Body postdata: RequestBody): Response<ResponseBody>
 

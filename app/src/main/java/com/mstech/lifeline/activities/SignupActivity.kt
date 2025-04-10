@@ -55,9 +55,9 @@ class SignupActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.title = "SignUp"
         getGps()
-        lifecycleScope.launch {
-            getCoordinaters()
-        }
+//        lifecycleScope.launch {
+//            getCoordinaters()
+//        }
         binding.imgProfile.setOnClickListener {
             val cameraIntent =
                 Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
@@ -96,9 +96,9 @@ class SignupActivity : AppCompatActivity() {
             } else if (binding.lastname.text.isNullOrBlank()) {
                 ToastUtils.showShort("Enter LastName")
             }
-            else if (memberType != 2 && coordinaterIdList[binding.statespinner.selectedItemPosition] == "0") {
-                ToastUtils.showShort("Select Coordinator")
-            }
+//            else if (memberType != 2 && coordinaterIdList[binding.statespinner.selectedItemPosition] == "0") {
+//                ToastUtils.showShort("Select Coordinator")
+//            }
             else if (binding.emailid.text?.isNotEmpty() == true && !isValidEmail(binding.emailid.text.toString())) {
                 ToastUtils.showShort("Enter Valid Email-Id")
             } else if (binding.mobile.text.isNullOrBlank()) {
@@ -109,13 +109,17 @@ class SignupActivity : AppCompatActivity() {
                 ToastUtils.showShort("Enter Address")
             } else if (binding.postalcode.text.isNullOrBlank()) {
                 ToastUtils.showShort("Enter Postalcode")
+            }else if (binding.referalCode.text.isNullOrBlank() || binding.referalCode.text.toString().length <6) {
+                ToastUtils.showShort("Enter Referral Code")
+            }else if (encodedImage.isEmpty()) {
+                ToastUtils.showShort("Choose Profile Picture")
             } else {
-                if (memberType == 2) {
-                    coordinatorId = 0
-                } else {
-                    coordinatorId =
-                        coordinaterIdList[binding.statespinner.selectedItemPosition].toInt()
-                }
+//                if (memberType == 2) {
+//                    coordinatorId = 0
+//                } else {
+//                    coordinatorId =
+//                        coordinaterIdList[binding.statespinner.selectedItemPosition].toInt()
+//                }
                 lifecycleScope.launch {
                     KeyboardUtils.hideSoftInput(this@SignupActivity)
                     registerMember()
@@ -202,33 +206,36 @@ class SignupActivity : AppCompatActivity() {
     private suspend fun registerMember() {
         Utils.showProgress(this, true)
         var obj = JSONObject()
-        obj.put("CoordinatorId", coordinatorId)
-        obj.put("MemberType", memberType)
+        obj.put("MemberId", 0)
         obj.put("FirstName", binding.firstname.text.toString())
         obj.put("LastName", binding.lastname.text.toString())
+        obj.put("EmailId", binding.emailid.text.toString())
+        obj.put("Mobile", binding.mobile.text.toString())
         obj.put("UserId", binding.userId.text.toString())
         obj.put("Pin", binding.pin.text.toString())
-        obj.put("emailid", binding.emailid.text.toString())
-        obj.put("Mobile", binding.mobile.text.toString())
-        obj.put("PostCode", binding.postalcode.text.toString())
-        obj.put("Latitude", lat)
-        obj.put("Longitude", lon)
         obj.put("PostCode", binding.postalcode.text.toString())
         obj.put("GeoAddress", binding.address.text.toString())
+        obj.put("Latitude", lat)
+        obj.put("Longitude", lon)
         obj.put("ProfilePic", encodedImage)
-        obj.put("City", binding.cityname.text.toString())
+        obj.put("CountryId", 1)
+        obj.put("StateId", 2)
+        obj.put("Gender", 1)
+        obj.put("LocationId", 0)
+        obj.put("Status", 1)
+        obj.put("ReferralCode", binding.referalCode.text.toString())
+
         var finalbody = ((obj)).toString()
             .toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
 
-        val response = RetrofitApi().registerCoOrdinator(finalbody)
+        val response = RetrofitApi().register(finalbody)
         if (response.isSuccessful) {
-            if (response.body()?.Id!! > 0) {
-                ToastUtils.showShort(response.body()?.Message.toString())
+            if (response.body()?.ResultId!! > 0) {
+                ToastUtils.showShort(response.body()?.ResultMessage.toString())
                 onBackPressed()
             } else {
-                ToastUtils.showShort(response.body()?.Message.toString())
+                ToastUtils.showShort(response.body()?.ResultMessage.toString())
             }
-
         } else {
             ToastUtils.showShort(response.errorBody()?.string())
         }

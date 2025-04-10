@@ -40,6 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -114,7 +115,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="@drawable/dropdown"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -313,6 +314,29 @@
                 android:maxLength="6"
                 android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/referal_code_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:expandedHintEnabled="false"
+            android:hint="Postal Code"
+            app:layout_constraintTop_toBottomOf="@id/postalcode_layout"
+            app:layout_constraintVertical_bias="0.0">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/referalCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Referal code"
+                android:inputType="number"
+                android:maxLength="6"
+                android:singleLine="true" />
+        </com.google.android.material.textfield.TextInputLayout>
         <TextView
             android:id="@+id/txtProfile"
             android:layout_width="match_parent"
@@ -324,7 +348,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:civ_border_width="@dimen/_1sdp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/postalcode_layout"
+            app:layout_constraintTop_toBottomOf="@+id/referal_code_layout"
 
             />
         <de.hdodenhof.circleimageview.CircleImageView
