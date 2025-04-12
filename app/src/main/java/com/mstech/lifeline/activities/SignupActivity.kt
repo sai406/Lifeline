@@ -21,6 +21,8 @@ import androidx.lifecycle.lifecycleScope
 import com.blankj.utilcode.util.KeyboardUtils
 import com.blankj.utilcode.util.NetworkUtils
 import com.blankj.utilcode.util.ToastUtils
+import com.google.android.gms.tasks.Task
+import com.google.firebase.messaging.FirebaseMessaging
 import com.mstech.lifeline.EasyLocation
 import com.mstech.lifeline.R
 import com.mstech.lifeline.api.RetrofitApi
@@ -35,6 +37,7 @@ import java.io.FileDescriptor
 import java.io.IOException
 import java.io.InputStream
 import java.util.regex.Pattern
+import kotlin.String
 
 
 class SignupActivity : AppCompatActivity() {
@@ -47,6 +50,7 @@ class SignupActivity : AppCompatActivity() {
     var lat: Double = 0.0
     var lon: Double = 0.0
     val GALLERY_REQUEST = 100
+    var token = ""
 
     private lateinit var binding: ActivitySignupBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -86,6 +90,14 @@ class SignupActivity : AppCompatActivity() {
 
         binding.tvLogin.setOnClickListener {
             onBackPressed()
+        }
+        FirebaseMessaging.getInstance().token.addOnCompleteListener { task: Task<String> ->
+            if (!task.isSuccessful) {
+                return@addOnCompleteListener
+            }
+
+            token = task.result
+            Log.i("PUSH_TOKEN", "pushToken: $token")
         }
 
         binding.submit.setOnClickListener(View.OnClickListener {
@@ -218,11 +230,8 @@ class SignupActivity : AppCompatActivity() {
         obj.put("Latitude", lat)
         obj.put("Longitude", lon)
         obj.put("ProfilePic", encodedImage)
-        obj.put("CountryId", 1)
-        obj.put("StateId", 2)
-        obj.put("Gender", 1)
-        obj.put("LocationId", 0)
-        obj.put("Status", 1)
+        obj.put("deviceId", token)
+        obj.put("deviceType", 1)
         obj.put("ReferralCode", binding.referalCode.text.toString())
 
         var finalbody = ((obj)).toString()

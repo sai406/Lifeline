@@ -17,6 +17,9 @@ import com.mstech.lifeline.api.RetrofitApi
 import com.mstech.lifeline.databinding.ActivityLoginBinding
 import com.mstech.lifeline.utils.Utils.showProgress
 import kotlinx.coroutines.launch
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody
+import org.json.JSONObject
 
 class LoginActivity : AppCompatActivity() {
     lateinit var binding: ActivityLoginBinding
@@ -69,35 +72,48 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    data class LoginsResponse(
+        val ResultId : Int,
+        val MemberId : String,
+        val ResultMessage : String,
+        val IsCoordinator : Int,
+    )
+
     suspend fun loginUser() {
         showProgress(this, true)
+        var obj = JSONObject()
+        obj.put("UserName", binding.username.text.toString())
+        obj.put("Password", binding.password.text.toString())
+        var finalbody = RequestBody.create(
+            "application/json; charset=utf-8".toMediaTypeOrNull(),
+            ((obj)).toString()
+        )
         var response =
-            RetrofitApi().login(
-                binding.username.text.toString(),
-                binding.password.text.toString(),
-                token,
-                "1"
-            )
+            RetrofitApi().loginRequest(finalbody)
         if (response.isSuccessful) {
             var data = response.body()!!
-            if (data.result?.statusCode!! < 0) {
-                ToastUtils.showShort(data.result?.statusMessage)
+            if (data.ResultId!! == 0) {
+                ToastUtils.showShort(data.ResultMessage)
             } else {
                 ToastUtils.showShort("Login Successfull")
-                SPStaticUtils.put(SharedKey.CUSTOMER_ID, data.details?.memberId!!.toString())
+                SPStaticUtils.put(SharedKey.CUSTOMER_ID, data!!.MemberId.toString())
                 SPStaticUtils.put(SharedKey.ISLOGIN, true)
-                SPStaticUtils.put(SharedKey.ISVOLUNTEER, data.details.isCoordinator.toString())
-                SPStaticUtils.put(SharedKey.HELPLINENUMBER, data.details.helpLineNumber)
-                SPStaticUtils.put(SharedKey.COORDINATERNUMBER, data.details.coordinatorNumber)
-                SPStaticUtils.put(SharedKey.COUNTRYID, data.details.countryId.toString())
-                SPStaticUtils.put(SharedKey.PROFILEPIC, data.details.customerImagePath?:"")
+                if (data.IsCoordinator == 0){
+                    SPStaticUtils.put(SharedKey.ISVOLUNTEER, "0")
+                }else{
+                    SPStaticUtils.put(SharedKey.ISVOLUNTEER, "2")
+                }
+                SPStaticUtils.put(SharedKey.HELPLINENUMBER,"")
+                SPStaticUtils.put(SharedKey.COORDINATERNUMBER, "")
+                SPStaticUtils.put(SharedKey.COUNTRYID, "")
+                SPStaticUtils.put(SharedKey.PROFILEPIC, "")
                 SPStaticUtils.put(
                     SharedKey.NAME,
-                    data.details.firstName.toString() + " " + data.details.lastName.toString()
+                    "" + " "
                 )
-                SPStaticUtils.put(SharedKey.MOBILE, data.details.mobile.toString())
-                SPStaticUtils.put(SharedKey.EMAIL, data.details.emailId.toString())
-                SPStaticUtils.put(SharedKey.OTP, data.details.pin.toString())
+                SPStaticUtils.put(SharedKey.MOBILE, "")
+                SPStaticUtils.put(SharedKey.EMAIL, "")
+                SPStaticUtils.put(SharedKey.OTP, "")
                 startActivity(Intent(this, DashboardActivity::class.java))
                 finish()
             }

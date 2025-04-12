@@ -1,6 +1,7 @@
 package com.mstech.lifeline.api
 
 import com.mstech.lifeline.BuildConfig
+import com.mstech.lifeline.activities.LoginActivity
 import com.mstech.lifeline.coordinater.model.*
 import com.mstech.lifeline.models.*
 import com.mstech.lifeline.models.LoginResponse
@@ -38,14 +39,6 @@ interface RetrofitApi {
         @Query("devicetype") type: String
     ): Response<MobileResponse>
 
-    @GET("CheckUserLogin")
-    suspend fun login(
-        @Query("userid") uid: String,
-        @Query("pin") pin: String,
-        @Query("deviceid") deviceid: String,
-        @Query("devicetype") type: String
-    ): Response<LoginResponse>
-
     @GET("GetMemberCoordinators")
     suspend fun getCoordinators(@Query("mid") memberid: String): Response<ContactsResponse>
 
@@ -72,6 +65,10 @@ interface RetrofitApi {
     ): Response<VerificationResponse>*/
     @POST("RespondHelpByVolunteer")
     suspend fun rescueAction(@Body postdata: RequestBody): Response<RespondResponse>
+
+    @POST("MemberLogin")
+    suspend fun loginRequest(@Body postdata: RequestBody): Response<LoginActivity.LoginsResponse>
+
     @GET("StartCampaign")
     suspend fun sendLocation(
         @Query("mid") memberid: String,

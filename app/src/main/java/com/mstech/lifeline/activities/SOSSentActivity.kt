@@ -319,7 +319,7 @@ class SOSSentActivity : AppCompatActivity() {
         obj.put("VideoName", "")
         val jsonArray = JSONArray()
         jsonArray.put(basedata)
-        obj.put("Videos", jsonArray)
+        obj.put("videos", jsonArray)
 
         var finalbody = ((obj)).toString()
             .toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
