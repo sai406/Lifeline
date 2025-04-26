@@ -9,12 +9,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.blankj.utilcode.util.SPStaticUtils
+import com.blankj.utilcode.util.ToastUtils
 import com.bumptech.glide.Glide
-import com.mstech.lifeline.models.SharedKey
 import com.mstech.lifeline.R
 import com.mstech.lifeline.activities.LoginActivity
 import com.mstech.lifeline.activities.UserdetailsActivity
+import com.mstech.lifeline.api.RetrofitApi
 import com.mstech.lifeline.databinding.FragmentProfileBinding
+import com.mstech.lifeline.models.SharedKey
+import com.mstech.lifeline.utils.Utils
 import com.mstech.lifeline.vault.activities.PinActivity
 import kotlinx.coroutines.launch
 
@@ -27,16 +30,9 @@ class ProfileFragment : Fragment(R.layout.fragment_home) {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
-        binding.name.setText(SPStaticUtils.getString(SharedKey.NAME))
-        binding.email.setText(SPStaticUtils.getString(SharedKey.EMAIL))
-        binding.mobile.setText(SPStaticUtils.getString(SharedKey.MOBILE))
-        binding.address.setText(SPStaticUtils.getString(SharedKey.ADDRESS))
-        Glide.with(requireActivity())  //2
-            .load(SPStaticUtils.getString(SharedKey.PROFILEPIC,"")) //3
-            .placeholder(R.drawable.ic_loading) //5
-            .error(R.drawable.profileperson) //6
-            .centerInside()
-            .into(binding.profilePic)
+        lifecycleScope.launch {
+            getMemberProfile()
+        }
         binding.profile.setOnClickListener(View.OnClickListener {
             startActivity(Intent(requireActivity(), UserdetailsActivity::class.java))
         })
@@ -48,6 +44,29 @@ class ProfileFragment : Fragment(R.layout.fragment_home) {
         })
         return binding.root
     }
+
+    private suspend fun getMemberProfile() {
+        Utils.showProgress(requireActivity(), true)
+        val response =
+            RetrofitApi().getMemberProfile(SPStaticUtils.getString(SharedKey.CUSTOMER_ID))
+        if (response.isSuccessful) {
+            binding.name.setText(response.body()?.FirstName+response.body()?.LastName)
+            binding.email.setText(response.body()?.EmailId.toString())
+            binding.mobile.setText(response?.body()?.Mobile.toString())
+            binding.address.setText(response?.body()?.GeoAddress)
+            Glide.with(requireActivity())  //2
+                .load(response?.body()?.CustomerImagePath) //3
+                .placeholder(R.drawable.ic_loading) //5
+                .error(R.drawable.profileperson) //6
+                .centerInside()
+                .into(binding.profilePic)
+        } else {
+            ToastUtils.showShort(response.errorBody()?.string())
+        }
+        Utils.showProgress(requireContext(), false)
+
+    }
+
 
     fun showDialog(title: String?, Message: String?, context: Context) {
         val builder = android.app.AlertDialog.Builder(context)

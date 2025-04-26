@@ -138,6 +138,9 @@ interface RetrofitApi {
     @GET("GetDdlCoordinators")
     suspend fun getCoordinaters(@Query("st") stateId:String ): Response<List<CoordinaterResponse>>
 
+    @GET("GetMemberProfile")
+    suspend fun getMemberProfile(@Query("mid") mId: String): Response<UserDetailsResponse>
+
     companion object {
 
         operator fun invoke(): RetrofitApi {

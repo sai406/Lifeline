@@ -155,7 +155,7 @@ class CameraActivity : AppCompatActivity() {
             .start(mainThreadExecutor, captureListener)
 
         Log.i("TAG", "Recording started")
-        startCountdownTimer(10000)
+        startCountdownTimer(2000)
     }
 
     /**
