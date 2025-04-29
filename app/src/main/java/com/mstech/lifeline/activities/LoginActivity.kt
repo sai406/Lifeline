@@ -84,6 +84,8 @@ class LoginActivity : AppCompatActivity() {
         var obj = JSONObject()
         obj.put("UserName", binding.username.text.toString())
         obj.put("Password", binding.password.text.toString())
+        obj.put("DeviceId", token)
+        obj.put("DeviceType", 1)
         var finalbody = RequestBody.create(
             "application/json; charset=utf-8".toMediaTypeOrNull(),
             ((obj)).toString()
@@ -107,10 +109,7 @@ class LoginActivity : AppCompatActivity() {
                 SPStaticUtils.put(SharedKey.COORDINATERNUMBER, "")
                 SPStaticUtils.put(SharedKey.COUNTRYID, "")
                 SPStaticUtils.put(SharedKey.PROFILEPIC, "")
-                SPStaticUtils.put(
-                    SharedKey.NAME,
-                    "" + " "
-                )
+                SPStaticUtils.put(SharedKey.NAME, "" + " ")
                 SPStaticUtils.put(SharedKey.MOBILE, "")
                 SPStaticUtils.put(SharedKey.EMAIL, "")
                 SPStaticUtils.put(SharedKey.OTP, "")

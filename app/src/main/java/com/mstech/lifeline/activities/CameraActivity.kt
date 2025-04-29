@@ -1,11 +1,14 @@
 package com.mstech.lifeline.activities
 
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.app.ProgressDialog
 import android.content.ContentValues
 import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.provider.MediaStore
+import android.provider.OpenableColumns
 import android.util.Base64
 import android.util.Log
 import android.view.View
@@ -18,12 +21,21 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.video.*
 import androidx.concurrent.futures.await
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.core.util.Consumer
 import androidx.core.view.updateLayoutParams
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.whenCreated
+import com.amazonaws.auth.BasicAWSCredentials
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferListener
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferState
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility
+import com.amazonaws.regions.Region
+import com.amazonaws.regions.Regions
+import com.amazonaws.services.s3.AmazonS3Client
 import com.blankj.utilcode.util.SPStaticUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.mstech.lifeline.models.SharedKey
@@ -37,6 +49,7 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.ByteArrayOutputStream
+import java.io.File
 import java.io.IOException
 import java.io.InputStream
 import java.text.SimpleDateFormat
@@ -57,6 +70,9 @@ class CameraActivity : AppCompatActivity() {
     private lateinit var recordingState:VideoRecordEvent
 
     var helpId = 0
+
+    lateinit var transferUtility: TransferUtility
+    lateinit var dialog : ProgressDialog
 
     // Camera UI  states and inputs
     enum class UiState {
@@ -155,7 +171,7 @@ class CameraActivity : AppCompatActivity() {
             .start(mainThreadExecutor, captureListener)
 
         Log.i("TAG", "Recording started")
-        startCountdownTimer(2000)
+        startCountdownTimer(10000)
     }
 
     /**
@@ -253,7 +269,17 @@ class CameraActivity : AppCompatActivity() {
                 enumerationDeferred!!.await()
                 enumerationDeferred = null
             }
+            dialog = ProgressDialog(this@CameraActivity)
+            dialog.setMessage("Please Wait....")
 //            initializeQualitySectionsUI()
+            val credentials =
+                BasicAWSCredentials("AKIAVKKSTZTQZX4WHYGB", "4ZzckGdlfqjEXdzFZZhrUMq1QuqMIXfPGcfiP/ph")
+            val s3Client = AmazonS3Client(credentials, Region.getRegion(Regions.US_EAST_1))
+
+            transferUtility = TransferUtility.builder()
+                .context(this@CameraActivity)
+                .s3Client(s3Client)
+                .build()
 
             bindCaptureUsecase()
 
@@ -439,7 +465,20 @@ class CameraActivity : AppCompatActivity() {
 //            val ansValue: String = requireActivity().Base64.encodeToString(bytes, Base64.DEFAULT)
             val basedata: String = Base64.encodeToString(bytes, Base64.DEFAULT)
             lifecycleScope.launch {
-                sendVideo(basedata)
+                uri.let {
+                    val fileSizeBytes = getFileSizeFromUri(uri)
+                    println("Video file size: ${fileSizeBytes.convertBytesToMB()}")
+                    getFileFromUri(it)?.let { it1 ->
+                        if (fileSizeBytes.convertBytesToMB() < 100) {
+                            uploadFileToS3(
+                                it1,
+                                "lifelinehelpvideos/HelpVideos"
+                            )
+                        } else {
+                            ToastUtils.showShort("File size should not be greater than 100 MB")
+                        }
+                    }
+                }
             }
 
         } catch (e: java.lang.Exception) {
@@ -448,6 +487,14 @@ class CameraActivity : AppCompatActivity() {
             Log.d("error", "onActivityResult: $e")
         }
     }
+
+    private fun getFileFromUri(uri: Uri): File? {
+        val inputStream = this.contentResolver.openInputStream(uri) ?: return null
+        val file = File(this.cacheDir, System.currentTimeMillis().toString()+"upload_video.mp4")
+        file.outputStream().use { outputStream -> inputStream.copyTo(outputStream) }
+        return file
+    }
+
 
     @Throws(IOException::class)
     fun getBytes(inputStream: InputStream): ByteArray? {
@@ -468,8 +515,8 @@ class CameraActivity : AppCompatActivity() {
         obj.put("HelpId", helpId)
         obj.put("VideoName", "")
         val jsonArray = JSONArray()
-        jsonArray.put(basedata)
-        obj.put("videos", jsonArray)
+//        jsonArray.put(basedata)
+        obj.put("videos", basedata)
 
         var finalbody = ((obj)).toString()
             .toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
@@ -512,6 +559,9 @@ class CameraActivity : AppCompatActivity() {
 
 
 
+    }
+    fun Long.convertBytesToMB(): Double {
+        return this.toDouble() / (1024 * 1024)
     }
 
     /**
@@ -687,4 +737,53 @@ class CameraActivity : AppCompatActivity() {
             else -> throw IllegalArgumentException("Quality string $name is NOT supported")
         }
     }
+
+    fun uploadFileToS3(file: File, bucketName: String) {
+        val key = "${System.currentTimeMillis()}${file.name}" // Define the file path in S3
+
+        val uploadObserver = transferUtility.upload(bucketName, key, file)
+
+        dialog.show()
+        uploadObserver.setTransferListener(object : TransferListener {
+            override fun onStateChanged(id: Int, state: TransferState?) {
+                if (state == TransferState.COMPLETED) {
+                    val fileUrl = "https://${bucketName}.s3.amazonaws.com/$key"
+                    Log.d("S3Upload", "Upload successful: $fileUrl")
+                    dialog.dismiss()
+                    lifecycleScope.launch {
+                        sendVideo(fileUrl)
+                    }
+//                    binding.etUploadVideo.setText(fileUrl)
+                    // Notify UI with the URL
+                } else if (state == TransferState.FAILED) {
+                    dialog.dismiss()
+                    Log.e("S3Upload", "Upload failed")
+                }
+            }
+
+            override fun onProgressChanged(id: Int, bytesCurrent: Long, bytesTotal: Long) {
+                if (bytesTotal > 0) {
+                    val progress = (bytesCurrent * 100 / bytesTotal).toInt()
+                    Log.d("S3Upload", "Upload Progress: $progress%")
+                    // Update ProgressBar here
+                }
+            }
+
+            override fun onError(id: Int, ex: Exception?) {
+                Log.e("S3Upload", "Error: ${ex?.message}")
+                dialog.dismiss()
+            }
+        })
+    }
+
+    fun Activity.getFileSizeFromUri( uri: Uri): Long {
+        this?.contentResolver?.query(uri, null, null, null, null)?.use { cursor ->
+            val sizeIndex = cursor.getColumnIndex(OpenableColumns.SIZE)
+            if (cursor.moveToFirst() && sizeIndex != -1) {
+                return cursor.getLong(sizeIndex)
+            }
+        }
+        return 0L
+    }
+
 }
