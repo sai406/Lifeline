@@ -747,7 +747,10 @@ class CameraActivity : AppCompatActivity() {
         uploadObserver.setTransferListener(object : TransferListener {
             override fun onStateChanged(id: Int, state: TransferState?) {
                 if (state == TransferState.COMPLETED) {
-                    val fileUrl = "https://${bucketName}.s3.amazonaws.com/$key"
+//                    https://lifelinehelpvideos.s3.us-east-1.amazonaws.com/HelpVideos/17459007859731745900785850upload_video.mp4
+
+//                    https://lifelinehelpvideos/HelpVideos.s3.us-east-1.amazonaws.com/HelpVideos/17459380005841745938000574upload_video.mp4
+                    val fileUrl = "https://lifelinehelpvideos.s3.us-east-1.amazonaws.com/HelpVideos/$key"
                     Log.d("S3Upload", "Upload successful: $fileUrl")
                     dialog.dismiss()
                     lifecycleScope.launch {

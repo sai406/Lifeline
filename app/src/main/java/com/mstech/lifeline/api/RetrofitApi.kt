@@ -163,6 +163,5 @@ interface RetrofitApi {
                 .build()
                 .create(RetrofitApi::class.java)
         }
-
     }
 }
