@@ -106,7 +106,7 @@ class UnnoticedIncidentDetailsActivity : AppCompatActivity() {
             }
             binding.videoLayout.setOnClickListener(View.OnClickListener {
                 val intent = Intent(Intent.ACTION_VIEW)
-                intent.setDataAndType(Uri.parse(data.Videos?.get(0)?.VideoPath), "video/*")
+                intent.setDataAndType(Uri.parse(data.Videos?.get(0)?.VideoName), "video/*")
                 startActivity(intent)
             })
 
